@@ -29,16 +29,18 @@ for s in range(2):
     mypen.left(90)
 mypen.hideturtle()
 
+#Draw title
+
 #Create player turtle
 player = turtle.Turtle()
-player.color('orange')
+player.color('black')
 player.penup()
 player.speed(0)
 
 #Game Variables
 score = 0
 speed = 0
-timeout = time.time() + 30
+timeout = time.time() + 60
 
 #Define Game Functions
 def turn_left():
@@ -63,11 +65,11 @@ def isCollision(t1, t2):
     else:
         return False
 
-def draw(penname, x, y, scorestring):
+def draw(penname, x, y, text, font, size):
     penname.hideturtle()    
     penname.penup()
     penname.setposition(x, y)
-    penname.write(scorestring, False, align='left', font=('Arial', 20, 'normal'))
+    penname.write(text, align='left', font=(font, size))
 
 #Set Keyboard Bindings
 turtle.listen()
@@ -86,24 +88,27 @@ citycodepen.color('black')
 citynamepen = turtle.Turtle()
 citynamepen.color('black')
 citynamepen.hideturtle()
-draw(citycodepen, -400, 200, "Find %s" % current_city['code'])
+draw(citycodepen, -100, 255, "Find %s" % current_city['code'], 'Arial', 40)
 
-#display score up the top
+#display score
 scorepen = turtle.Turtle()
 scorepen.color('black')
-draw(scorepen, -200, 200, "Your Score: %s" % score)
+draw(scorepen, -120, -255, "Your Score: %s" % score, 'Arial', 40)
 
-#display time up the top
+#display time
 timepen = turtle.Turtle()
 timepen.color('black')
-draw(mypen, 220, 200, "Time Remaining:")
+draw(mypen, -180, -300, "Time Remaining:", 'Arial', 40)
+
+
 
 #set city co-ordinates on the map
 citypoint = turtle.Turtle()
-citypoint.color('black')
-citypoint.shape('circle')
-citypoint.shapesize(0.5)
+# citypoint.color('black')
+# citypoint.shape('circle')
+# citypoint.shapesize(0.5)
 citypoint.penup()
+citypoint.hideturtle()
 citypoint.setposition(current_city['x'], current_city['y'])
 
 
@@ -112,7 +117,7 @@ while time.time() < timeout:
     player.forward(speed)
 
     timepen.undo()
-    draw(timepen, 377, 200, str(int(timeout - time.time())))
+    draw(timepen, 130, -300, str(int(timeout - time.time())), 'Arial', 40)
 
     #Player - Boundary Check
     if player.xcor() > 400:
@@ -126,9 +131,9 @@ while time.time() < timeout:
 
     #Collision
     if isCollision(player, citypoint):
-        #draw city name
+        #draw last city name
         citynamepen.undo()
-        draw(citynamepen, 0, 200, "That was %s" % current_city['name'])
+        draw(citynamepen, -160, 230, "Good Job! That was %s!" % current_city['name'], 'Arial', 20)
         #add one point to score
         score += 1
         #change current city to another random city
@@ -137,9 +142,9 @@ while time.time() < timeout:
         citypoint.setposition(current_city['x'], current_city['y'])
         #change city name and score text
         citycodepen.undo()
-        draw(citycodepen, -400, 200, "Find %s" % current_city['code'])
+        draw(citycodepen, -100, 255, "Find %s" % current_city['code'], 'Arial', 40)
         scorepen.undo()
-        draw(scorepen, -200, 200, "Your Score: %s" % score)
+        draw(scorepen, -120, -255, "Your Score: %s" % score, 'Arial', 40)
 
 scorepen.setposition(0, 10)
 scorepen.color("yellow")
