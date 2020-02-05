@@ -13,7 +13,7 @@ Fly your little python turtle around the world to find as many airports as you c
 To open the game, simply open the folder and run the following in the command line
 
 ```bash
-python flight-game.py
+python python-airport-code-game.py
 ```
 
 ## Contributing
