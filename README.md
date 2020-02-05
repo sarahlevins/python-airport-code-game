@@ -6,7 +6,7 @@ Fly your little python turtle around the world to find as many airports as you c
 
 ## Download
 
-[Click here to download game files as a zip file](https://github.com/sarahlevins/weather-app/archive/master.zip)
+[Click here to download game files as a zip file](https://github.com/sarahlevins/python-airport-code-game/archive/master.zip)
 
 ## Usage
 
