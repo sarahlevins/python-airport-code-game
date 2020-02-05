@@ -29,11 +29,21 @@ for s in range(2):
     mypen.left(90)
 mypen.hideturtle()
 
-#Draw title
+s = turtle.Shape("compound")
+# poly1 = ((0,0),(10,-5),(0,10),(-10,-5))
+poly1 = ((-2,-13),(0,-14), (2,-13), (2,10), (0,11), (-2,10))
+s.addcomponent(poly1, "black")
+poly2 = ((0,4),(10,-4),(-10,-4))
+s.addcomponent(poly2, "black")
+poly3 = ((0,-11), (5,-16), (-5,-16))
+s.addcomponent(poly3, "black")
+wn.register_shape("myshape", s)
 
+print(turtle.getshapes())
 #Create player turtle
 player = turtle.Turtle()
 player.color('black')
+player.shape('myshape')
 player.penup()
 player.speed(0)
 
